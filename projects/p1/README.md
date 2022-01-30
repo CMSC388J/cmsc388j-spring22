@@ -114,7 +114,7 @@ In `practice.py`, implement the following functions:
     ```python
     >>> f_list = [sum_unique, sum]
     >>> num_list = [2, 2, 2, 4, 5]
-    >>> all_the_sums(num_list, f_list)
+    >>> num_func_mapper(num_list, f_list)
     [11, 15]
     ```
 
