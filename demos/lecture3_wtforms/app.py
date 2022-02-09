@@ -3,16 +3,18 @@ from forms import *
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'test132'
 
-app.config.update(
-    SESSION_COOKIE_SECURE=True,
-    SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SAMESITE='Lax',
-)
+# app.config.update(
+#     SESSION_COOKIE_SECURE=True,
+#     SESSION_COOKIE_HTTPONLY=True,
+#     SESSION_COOKIE_SAMESITE='Lax',
+# )
 
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
+def index():            
+    print(session)
     form = WelcomeForm()
     if request.method == 'POST':
         if form.validate():

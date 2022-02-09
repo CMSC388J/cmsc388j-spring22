@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, PasswordField
 from wtforms.validators import InputRequired, NumberRange, Length
 
+
 class WelcomeForm(FlaskForm):
     name = StringField('Name', validators=[InputRequired(), Length(min=4, max=30)])
 
@@ -9,7 +10,8 @@ class WelcomeForm(FlaskForm):
 
     age = IntegerField('Age', validators=[InputRequired(), NumberRange(min=1, max=140, message='Must be between 1 and 140')])
 
-   submit = SubmitField('Submit')
+    submit = SubmitField('Submit')
+
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired()])

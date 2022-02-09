@@ -1,6 +1,13 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Welcome to the website!</h1>
+<h1>
+    {% if message %}
+        {{ message }}
+    {% else %}
+        Welcome to the website!
+    {% endif %}
+</h1>
 <form action="/" method="post">
     {{ form.csrf_token }}
     {{ form.name.label }}: {{ form.name(size=40) }} <br>
@@ -9,4 +16,3 @@
     {{ form.submit() }}
 </form>
 {% endblock %}
-}
