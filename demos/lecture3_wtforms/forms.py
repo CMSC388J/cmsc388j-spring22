@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, PasswordField
+from wtforms import StringField, IntegerField, SubmitField, PasswordField, TextField
 from wtforms.validators import InputRequired, NumberRange, Length
 
 
@@ -12,6 +12,13 @@ class WelcomeForm(FlaskForm):
 
     submit = SubmitField('Submit')
 
+
+class ProfileForm(FlaskForm):
+    name = StringField('Name', validators=[InputRequired(), Length(min=4, max=30)])
+    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=30)])
+    status = StringField('Status', validators=[InputRequired(), Length(min=4, max=200)])
+    bio = TextField('Bio', validators=[InputRequired(), Length(min=4, max=2000)])
+    submit = SubmitField('Create Profile')
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired()])

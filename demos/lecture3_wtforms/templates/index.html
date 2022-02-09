@@ -10,9 +10,13 @@
 </h1>
 <form action="/" method="post">
     {{ form.csrf_token }}
-    {{ form.name.label }}: {{ form.name(size=40) }} <br>
-    {{ form.location.label }} {{ form.location(size=60) }} <br>
-    {{ form.age.label }} {{ form.age() }} <br>
+    <div style="width: 50vw; margin-left: 25vw; margin-right: 25vw;">
+    {{ form.name.label }}: {{ form.name(size=40) }} <br><br>
+    {{ form.location.label }}: {{ form.location(size=40) }} <br><br>
+    {{ form.age.label }}: {{ form.age(size=40) }} <br><br>
     {{ form.submit() }}
+    </div>
 </form>
+
+<h6><a href="{{ url_for('reset') }}">Reset Session</a></h6>
 {% endblock %}
