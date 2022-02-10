@@ -14,13 +14,13 @@
 
 {% if profiles %}
     {% for profile in profiles %}
-    <ul style = "border-color: black; border-width: 5px;">
+    <ul>
+        <li>username: <a href="{{ url_for('view_profile', username=profile.username) }}">{{profile.username}}</a></li>
         <li>Name: {{profile.name}}</li>
-        <li>username: {{profile.username}}</li>
         <li>Status: {{profile.status}}</li>
         <li>Bio: {{profile.bio}}</li>
-
     </ul>
+    <hr/>
     {% endfor %}
 {% endif %}
 

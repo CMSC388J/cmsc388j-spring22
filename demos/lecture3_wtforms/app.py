@@ -62,5 +62,12 @@ def profile():
             return redirect(url_for('profile'))
         else:
             print('validation failed')
-    print(profiles)
     return render_template('profile.html', profiles=profiles, form=form)
+
+
+@app.route('/profile/<username>')
+def view_profile(username):
+    p = list(filter(lambda profile: profile['username'] == username, profiles))
+    if p is not None and len(p) != 0:
+        return render_template("user_profile.html", profile=p[0])
+    return redirect(url_for('profile'))
