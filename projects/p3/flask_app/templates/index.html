@@ -1,0 +1,24 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="container">
+    <form action="/" class="form-inline my-2 my-lg-0" method="POST">
+        {{ form.csrf_token }}
+        {{ form.search_query(class="form-control", placeholder="Search") }}
+
+        {% if form.search_query.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.search_query.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {{ form.submit(class="btn btn-outline-success") }}
+    </form>
+</div>
+
+<div class="container">
+    <h2>Please use the search bar above to search for movies! Then you can review them </h2>
+</div>
+{% endblock %}

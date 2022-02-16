@@ -1,0 +1,84 @@
+{% extends "header.html" %}
+{% block content %}
+
+{% if error_msg %}
+  <b>{{ error_msg }}</b>
+{% endif %}
+
+{% if movie %}
+
+  {# Display card for the movie details #}
+  <div class="container">
+    <div class="card text-center">
+      <div class="card-header">
+        {{ movie.title }} ({{ movie.year }})
+      </div>
+      <div class="card-body">
+        <img src="{{ movie.poster_url }}" class="mr-3" alt="alt text">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Directed by:</b> {{ movie.director }}</li>
+          <li class="list-group-item"><b>Actors:</b> {{ movie.actors }}</li>
+          <li class="list-group-item"><b>Genres:</b> {{ movie.genres }}</li>
+          <li class="list-group-item"><b>Awards:</b> {{ movie.awards }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="col-md-12">
+      <h1> Reviews <small class="float-right">{{ reviews | length }} reviews</small></h1>
+      <ul class="media-list">
+        {% for review in reviews %}
+        <li class="media review-item">
+            <div class="media-body">
+                <span class="float-right">
+                    <small>{{ review['date'] }}</small>
+                </span>
+                <strong>@{{ review['commenter'] }}</strong>
+                <p>
+                    {{ review['content'] }}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+  </div>
+
+  {# Movie review submission form #}
+  <div class="container">
+    <form method="POST" action="">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name(class="form-control") }}
+
+        {% if form.name.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.name.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.text.label }}
+        {{ form.text(class="form-control") }}
+
+        {% if form.text.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.text.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+      </div>
+      {{ form.submit() }}
+    </form>
+  </div>
+
+{% endif %}
+{% endblock %}
