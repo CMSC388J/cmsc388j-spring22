@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/profile" method="post">
+    {{ form.csrf_token }}
+    <div style="width: 50vw; margin-left: 25vw; margin-right: 25vw;">
+    {{ form.name.label }}: {{ form.name(size=40) }} <br><br>
+    {{ form.username.label }}: {{ form.username(size=40) }} <br><br>
+    {{ form.status.label }}: {{ form.status(size=40) }} <br><br>
+    {{ form.bio.label }}: {{ form.bio(size=40) }} <br><br>
+    {{ form.submit() }}
+    </div>
+</form>
+
+{% if profiles %}
+    {% for profile in profiles %}
+    <ul>
+        <li>username: <a href="{{ url_for('view_profile', username=profile.username) }}">{{profile.username}}</a></li>
+        <li>Name: {{profile.name}}</li>
+        <li>Status: {{profile.status}}</li>
+        <li>Bio: {{profile.bio}}</li>
+    </ul>
+    <hr/>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
