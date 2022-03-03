@@ -1,0 +1,80 @@
+{% extends "header.html" %}
+{% block content %}
+
+{% if error_msg %}
+<b>{{ error_msg }}</b>
+{% endif %}
+
+{% if movie %}
+
+{# Display card for the movie details #}
+<div class="row">
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-header">
+        {{ movie.title }} ({{ movie.year }})
+      </div>
+      <div class="card-body">
+        <img src="{{ movie.poster_url }}" class="mr-3 movie" alt="alt text">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Directed by:</b> {{ movie.director }}</li>
+          <li class="list-group-item"><b>Actors:</b> {{ movie.actors }}</li>
+          <li class="list-group-item"><b>Genres:</b> {{ movie.genres }}</li>
+          <li class="list-group-item"><b>Awards:</b> {{ movie.awards }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{# Reviews #}
+<div class="row">
+  <div class="col-md-12">
+    <h1> Reviews <small class="float-right">{{ reviews|length }} reviews</small></h1>
+    <ul class="media-list">
+      {% for review in reviews %}
+      <li class="media review-item">
+        <img class="mr-3 comment-pic" src="data:image/png;base64,{{review.image}}" alt="">
+        <div class="media-body">
+          <span class="float-right">
+            <small>{{ review.date }}</small>
+          </span>
+          <a href="{{ url_for('user_detail', username=review.commenter.username) }}">
+            <strong>@{{ review.commenter.username }}</strong>
+          </a>
+          <p>
+            {{ review.content }}
+          </p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% if current_user.is_authenticated %}
+{# Movie review submission form #}
+<div class="row">
+  <div class="col">
+    <form method="POST" action="">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        {{ form.text.label }}
+        {{ form.text(class="form-control") }}
+
+        {% if form.text.errors %}
+        <div class="alert alert-warning" role="alert">
+          {% for error in form.text.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+      </div>
+      {{ form.submit() }}
+    </form>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+{% endblock content %}

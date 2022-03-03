@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        {# Display any error messages #}
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        {# User's Profile Picture #}
+        <img class="propic" src="data:image/png;base64,{{image}}" alt="image">
+    </div>
+    <div class="col">
+        {# Indicate which user's reviews we're looking at #}
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        {# Show all reviews made by the user #}
+    </div>
+</div>
+{% endblock %}
