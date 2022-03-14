@@ -20,7 +20,7 @@ from .client import MovieClient
 
 app = Flask(__name__)
 app.config["MONGODB_HOST"] = "mongodb://localhost:27017/project_4"
-app.config["SECRET_KEY"] = "bimbus blast"
+app.config["SECRET_KEY"] = ""
 
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
@@ -32,6 +32,6 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 bcrypt = Bcrypt(app)
 
-client = MovieClient("4b08ad65")
+client = MovieClient(os.get("OMDB_API_KEY"))
 
 from . import routes
