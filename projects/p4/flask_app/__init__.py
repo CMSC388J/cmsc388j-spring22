@@ -33,6 +33,6 @@ login_manager.login_view = "login"
 bcrypt = Bcrypt(app)
 
 # replace "default_value" with your api key if you need to hardcode it
-client = MovieClient(os.getenv("OMDB_API_KEY", "default_value")) 
+client = MovieClient(os.getenv("OMDB_API_KEY", "default_value"))
 
 from . import routes
