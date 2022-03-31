@@ -1,0 +1,18 @@
+{% extends "header.html" %}
+{% block content %}
+{% if error_msg %}
+    <p>{{ error_msg }}</p>
+{% endif %}
+
+<div class="container-fluid">
+    {% for result in results %}
+    <div class="media">
+        <img src="{{ result.poster_url }}" class="mr-3 movie" alt="missing">
+        <div class="media-body">
+        <h5 class="mt-0"><a href="{{ url_for('main.movie_detail', movie_id=result.imdb_id) }}">{{ result.title }}</a> ({{ result.year }})</h5>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

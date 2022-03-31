@@ -1,0 +1,34 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <img class="propic" src="data:image/png;base64,{{image}}" alt="image">
+    </div>
+    <div class="col">
+        <h2>{{ username }}'s Reviews</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h1> Reviews <small class="float-right">{{ reviews.count() }} reviews</small></h1>
+        <ul class="media-list">
+            {% for review in reviews %}
+            <li class="media review-item">
+                <div class="media-body">
+                    <span class="float-right">
+                        <small>{{ review.date }}</small>
+                    </span>
+                    <strong>For: <a href="{{ url_for('main.movie_detail', movie_id=review.imdb_id) }}">
+                            {{ review.movie_title }}
+                        </a>
+                    </strong>
+                    <p>
+                        {{ review.content }}
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
