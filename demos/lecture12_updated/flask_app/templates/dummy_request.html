@@ -1,0 +1,21 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            Trying out <code>requests.post('https://httpbin.org/post', data = {'key':'value'})</code>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Response:
+            <div>
+                <code>
+                    {{ response.text }}
+                </code>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

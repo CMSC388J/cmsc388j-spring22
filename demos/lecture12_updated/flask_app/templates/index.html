@@ -1,0 +1,27 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form action="" class="form-inline my-2 my-lg-0" method="POST">
+                {{ form.csrf_token }}
+                {{ form.submit(class="btn btn-outline-success") }}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

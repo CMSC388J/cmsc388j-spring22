@@ -1,0 +1,2 @@
+SECRET_KEY = b"\xe6\x86\xbc\x0b\x9a4\xeb\xe4\xd2\x9d\x1b\xfaF\x11\x95q"
+MONGODB_HOST = "mongodb://localhost:27017/wk12"
